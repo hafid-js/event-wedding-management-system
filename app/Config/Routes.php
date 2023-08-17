@@ -45,6 +45,8 @@ $routes->addRedirect('/', 'home');
 $routes->get('/gawe', 'Gawe::index');
 $routes->get('gawe/add', 'Gawe::create');
 $routes->post('gawe', 'Gawe::store');
+$routes->get('gawe/edit/(:any)', 'Gawe::edit/$1');
+$routes->put('gawe/(:any)', 'Gawe::update/$1');
 
 /*
  * --------------------------------------------------------------------

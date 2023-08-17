@@ -21,7 +21,17 @@
                 <?= session()->getFlashdata('success'); ?>
             </div>
         </div>
-        <?php endif ?>
+        <?php endif; ?>
+
+        <?php if(session()->getFlashdata('error')) : ?>
+        <div class="alert alert-danger alert-dismissible show fade">
+            <div class="alert-body">
+                <button class="close" data-dismiss="alert">x</button>
+                <b>Error !</b>
+                <?= session()->getFlashdata('error'); ?>
+            </div>
+        </div>
+        <?php endif; ?>
 
     <div class="section-body">
         <div class="card">
@@ -46,7 +56,7 @@
                             <td><?= date('d/m/Y', strtotime($value->date_gawe)) ?></td>
                             <td><?= $value->info_gawe ?></td>
                             <td class="text-center" style="width: 15%;">
-                                <a href="" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="<?= site_url('gawe/edit/'. $value->id_gawe) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                             </td>
                     </tr>
