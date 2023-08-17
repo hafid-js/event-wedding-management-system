@@ -20,11 +20,13 @@ class Gawe extends BaseController
         return view('gawe/get', $data);
     }
 
-    public function create() {
+    public function create()
+    {
         return view('gawe/add');
     }
 
-    public function store() {
+    public function store()
+    {
 
         // cara 1 : name jika sama dengan yang di database
         // $data = $this->request->getPost();
@@ -39,17 +41,18 @@ class Gawe extends BaseController
 
         $this->db->table('gawe')->insert($data);
 
-        if($this->db->affectedRows() > 0) {
+        if ($this->db->affectedRows() > 0) {
             return redirect()->to(site_url('gawe'))->with('success', 'Data Berhasil Disimpan');
         }
     }
 
-    public function edit($id = null) {
-        if($id != null) {
+    public function edit($id = null)
+    {
+        if ($id != null) {
             $query = $this->db->table('gawe')->getWhere([
                 'id_gawe' => $id
             ]);
-            if($query->resultID->num_rows > 0) {
+            if ($query->resultID->num_rows > 0) {
                 $data['gawe'] = $query->getRow();
                 return view('gawe/edit', $data);
             } else {
@@ -59,9 +62,8 @@ class Gawe extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
-
-
-    public function update($id) {
+    public function update($id)
+    {
         // cara 1 : bila nama field dan isi tabel sama
         // $data = $this->request->getPost();
         // unset($data['_method']);
@@ -76,10 +78,15 @@ class Gawe extends BaseController
 
         $this->db->table('gawe')->where([
             'id_gawe' => $id
-            ])->update($data);
-            return redirect()->to(site_url('gawe'))->with('success', 'Data Berhasil Diupdate');
+        ])->update($data);
+        return redirect()->to(site_url('gawe'))->with('success', 'Data Berhasil Diupdate');
     }
 
-
-
+    public function destroy($id)
+    {
+        $this->db->table('gawe')->where([
+            'id_gawe' => $id
+        ])->delete();
+        return redirect()->to(site_url('gawe'))->with('success', 'Data Berhasil Dihapus');
+    }
 }
