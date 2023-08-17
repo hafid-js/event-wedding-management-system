@@ -13,6 +13,7 @@ class Groups extends ResourcePresenter
     // }
 
     protected $modelName = 'App\Models\GroupModel';
+    // protected $helpers = ['custom'];
     /**
      * Present a view of resource objects
      *
@@ -43,6 +44,7 @@ class Groups extends ResourcePresenter
      */
     public function new()
     {
+        helper('custom');
         return view('group/new');
     }
 
@@ -114,6 +116,48 @@ class Groups extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        //
+        // cara pertama
+        // $this->model->where('id_group', $id)->delete();
+
+        //cara kedua
+        $this->model->delete($id);
+        return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Dihapus');
     }
+
+    public function trash(){
+        $data['groups'] = $this->model->onlyDeleted()->findAll();
+        return view('group/trash', $data);
+    }
+
+    public function restore($id = null) {
+        $this->db = \Config\Database::connect();
+        if ($id != null) {
+            $this->db->table('groups')
+            ->set('deleted_at', null, true)
+            ->where(['id_group' => $id])
+            ->update();
+
+        } else {
+            $this->db->table('groups')
+            ->set('deleted_at', null, true)
+            ->where('deleted_at is NOT NULL', NULL, FALSE)
+            ->update();
+        }
+        if($this->db->affectedRows() > 0) {
+            return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Direstore');
+        }
+    }
+
+    public function delete2($id = null)
+    {
+        if($id != null ) {
+            $this->model->delete($id, true);
+            return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Dihapus Permanen');
+        } else {
+            $this->model->purgeDeleted();
+            return redirect()->to(site_url('groups'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
+        }
+    }
+
+
 }

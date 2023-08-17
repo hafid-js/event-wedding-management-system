@@ -7,9 +7,9 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>Groups</h1>
+        <h1>Group Trash</h1>
         <div class="section-header-button">
-            <a href="<?= site_url('groups/new') ?>" class="btn btn-primary">Add New</a>
+            <a href="<?= site_url('groups') ?>" class="btn btn-secondary">Back</a>
         </div>
     </div>
 
@@ -37,11 +37,15 @@
         <div class="card">
             <div class="card-header">
                 <h4>
-                    Data Grup Kontak
+                    Data Grup Kontak - Trash
                 </h4>
                 <div class="card-header-action">
-                    <a href="<?= site_url('groups/trash') ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</a>
+                    <a href="<?= site_url('groups/restore') ?>" class="btn btn-info">Restore All</a>
                 </div>
+                <form action="<?= site_url('groups/delete2') ?>" class="d-inline" method="post" onsubmit="return confirm('Yakin hapus data?')">
+                                <?= csrf_field(); ?>
+                                <button class="btn btn-danger btn-sm">Delete All Permanently</button>
+                            </form>
             </div>
             <div class="table-responsive">
                 <table class="card-body table table-striped table-md">
@@ -57,10 +61,10 @@
                             <td><?= $value->name_group ?></td>
                             <td><?= $value->info_group ?></td>
                             <td class="text-center" style="width: 15%;">
-                                <a href="<?= site_url('groups/edit/'. $value->id_group) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                <form action="<?= site_url('groups/delete/'.$value->id_group) ?>" class="btn btn-warning btn-sm" method="post" onsubmit="return confirm('Yakin hapus data?')">
+                                <a href="<?= site_url('groups/restore/'. $value->id_group) ?>" class="btn btn-info btn-sm">Restore</a>
+                                <form action="<?= site_url('groups/delete2/'.$value->id_group) ?>" class="d-inline" method="post" onsubmit="return confirm('Yakin hapus data?')">
                                 <?= csrf_field(); ?>
-                                <button href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-danger btn-sm">Delete Permanently</button>
                             </form>
                                
                             </td>

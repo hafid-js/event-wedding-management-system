@@ -52,7 +52,12 @@ $routes->get('gawe/edit/(:any)', 'Gawe::edit/$1');
 $routes->put('gawe/(:any)', 'Gawe::update/$1');
 $routes->delete('gawe/(:segment)', 'Gawe::destroy/$1');
 
-$routes->presenter('groups');
+$routes->get('/groups/trash', 'Groups::trash');
+$routes->get('groups/restore/(:any)', 'Groups::restore/$1');
+$routes->get('groups/restore', 'Groups::restore');
+$routes->delete('groups/delete2/(:any)', 'Groups::delete2/$1');
+$routes->delete('groups/delete2', 'Groups::delete2');
+$routes->presenter('groups', ['filter' => 'isLoggedIn']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -66,7 +66,8 @@ class Filters extends BaseConfig
         'isLoggedIn' => ['before' => [
             'home',
             'gawe',
-            'gawe/*'
+            'gawe/*',
+            'groups/*',
         ]]
     ];
 }
