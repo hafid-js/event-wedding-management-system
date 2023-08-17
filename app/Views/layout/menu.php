@@ -1,5 +1,5 @@
 <li class="menu-header">Main Menu</li>
-<li><a class="nav-link" href="<?= site_url() ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+<li><a class="nav-link" href="<?= site_url('home') ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
 <li class="dropdown">
 <li><a class="nav-link" href="<?= site_url('gawe') ?>"><i class="far fa-calendar"></i> <span>Gawe / Acara</span></a></li>
 <li class="dropdown">
