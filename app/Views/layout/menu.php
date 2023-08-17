@@ -5,7 +5,7 @@
 <li class="dropdown">
     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-address-book"></i> <span>Kontak</span></a>
     <ul class="dropdown-menu">
-        <li><a class="nav-link" href="">Grup Kontak</a></li>
+        <li><a class="nav-link" href="<?= site_url('groups') ?>">Grup Kontak</a></li>
         <li><a class="nav-link" href="">Kontak Saya</a></li>
     </ul>
 </li>
