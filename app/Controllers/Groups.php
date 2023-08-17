@@ -8,9 +8,11 @@ use CodeIgniter\RESTful\ResourcePresenter;
 class Groups extends ResourcePresenter
 {
 
-    function __construct() {
-        $this->group = new GroupModel();
-    }
+    // function __construct() {
+    //     $this->group = new GroupModel();
+    // }
+
+    protected $modelName = 'App\Models\GroupModel';
     /**
      * Present a view of resource objects
      *
@@ -18,7 +20,7 @@ class Groups extends ResourcePresenter
      */
     public function index()
     {
-        $data['groups'] = $this->group->findAll();
+        $data['groups'] = $this->model->findAll();
         return view('group/index', $data);
     }
 
@@ -31,7 +33,7 @@ class Groups extends ResourcePresenter
      */
     public function show($id = null)
     {
-        return view('group/new');
+        
     }
 
     /**
@@ -41,7 +43,7 @@ class Groups extends ResourcePresenter
      */
     public function new()
     {
-        //
+        return view('group/new');
     }
 
     /**
@@ -52,7 +54,9 @@ class Groups extends ResourcePresenter
      */
     public function create()
     {
-        //
+               $data = $this->request->getPost();
+               $this->model->insert($data);
+               return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -64,7 +68,14 @@ class Groups extends ResourcePresenter
      */
     public function edit($id = null)
     {
-        return view('group/edit');
+        $group = $this->model->where('id_group', $id)->first();
+        if(is_object($group)) {
+            $data['group'] = $group;
+            return view('group/edit', $data);
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+  
     }
 
     /**
@@ -77,7 +88,9 @@ class Groups extends ResourcePresenter
      */
     public function update($id = null)
     {
-        //
+        $data = $this->request->getPost();
+        $this->model->update($id, $data);
+        return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Diupdate');
     }
 
     /**

@@ -9,7 +9,7 @@
     <div class="section-header">
         <h1>Groups</h1>
         <div class="section-header-button">
-            <a href="<?= site_url('groups/add') ?>" class="btn btn-primary">Add New</a>
+            <a href="<?= site_url('groups/new') ?>" class="btn btn-primary">Add New</a>
         </div>
     </div>
 
