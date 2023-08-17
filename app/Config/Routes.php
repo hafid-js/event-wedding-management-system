@@ -40,6 +40,8 @@ $routes->get('create-db', function() {
     }
 });
 
+$routes->get('login', 'Auth::login');
+
 $routes->addRedirect('/', 'home');
 
 $routes->get('/gawe', 'Gawe::index');
