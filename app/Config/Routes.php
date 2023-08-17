@@ -58,6 +58,8 @@ $routes->get('groups/restore', 'Groups::restore');
 $routes->delete('groups/delete2/(:any)', 'Groups::delete2/$1');
 $routes->delete('groups/delete2', 'Groups::delete2');
 $routes->presenter('groups', ['filter' => 'isLoggedIn']);
+
+$routes->resource('contacts', ['filter' => 'isLoggedIn']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

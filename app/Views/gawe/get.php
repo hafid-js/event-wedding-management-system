@@ -42,14 +42,17 @@
             </div>
             <div class="table-responsive">
                 <table class="card-body table table-striped table-md">
-                    <tr>
+                  <thead>
+                  <tr>
                         <th>#</th>
                         <th>Nama Gawe</th>
                         <th>Tanggal Gawe</th>
                         <th>Info</th>
                         <th>Action</th>
                     </tr>
-                    <?php foreach($gawe as $key => $value) : ?>
+                  </thead>
+                  <tbody>
+                  <?php foreach($gawe as $key => $value) : ?>
                     <tr>
                             <td><?= $key + 1 ?></td>
                             <td><?= $value->name_gawe ?></td>
@@ -66,6 +69,7 @@
                             </td>
                     </tr>
                     <?php endforeach; ?>
+                  </tbody>
                 </table>
             </div>
         </div>

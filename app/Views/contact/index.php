@@ -1,15 +1,15 @@
 <?= $this->extend('layout/default') ?>
 <?= $this->section('title') ?>
-<title>Data Groups &mdash; yukNikah</title>
+<title>Data Contacts &mdash; yukNikah</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 
 <section class="section">
     <div class="section-header">
-        <h1>Groups</h1>
+        <h1>Contacts</h1>
         <div class="section-header-button">
-            <a href="<?= site_url('groups/new') ?>" class="btn btn-primary">Add New</a>
+            <a href="<?= site_url('contacts/new') ?>" class="btn btn-primary">Add New</a>
         </div>
     </div>
 
@@ -37,31 +37,38 @@
         <div class="card">
             <div class="card-header">
                 <h4>
-                    Data Grup Kontak
+                    Data Kontak Saya
                 </h4>
-                <div class="card-header-action">
-                    <a href="<?= site_url('groups/trash') ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</a>
-                </div>
             </div>
             <div class="table-responsive">
                 <table class="card-body table table-striped table-md">
-                   <thead>
-                   <tr>
+                    <thead>
+                    <tr>
                         <th>#</th>
-                        <th>Nama Grup</th>
+                        <th>Nama Kontak</th>
+                        <th>Alias</th>
+                        <th>Telepon</th>
+                        <th>Email</th>
+                        <th>Alamat</th>
                         <th>Info</th>
+                        <th>Grup</th>
                         <th>Action</th>
                     </tr>
-                   </thead>
-                <tbody>
-                <?php foreach($groups as $key => $value) : ?>
+                    </thead>
+                    <tbody>
+                    <?php foreach($contacts as $key => $value) : ?>
                     <tr>
                             <td><?= $key + 1 ?></td>
+                            <td><?= $value->name_contact ?></td>
+                            <td><?= $value->name_alias ?></td>
+                            <td><?= $value->phone ?></td>
+                            <td><?= $value->email ?></td>
+                            <td><?= $value->address ?></td>
+                            <td><?= $value->info_contact ?></td>
                             <td><?= $value->name_group ?></td>
-                            <td><?= $value->info_group ?></td>
                             <td class="text-center" style="width: 15%;">
-                                <a href="<?= site_url('groups/edit/'. $value->id_group) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                <form action="<?= site_url('groups/delete/'.$value->id_group) ?>" class="btn btn-warning btn-sm" method="post" onsubmit="return confirm('Yakin hapus data?')">
+                                <a href="<?= site_url('contacts/edit/'. $value->id_contact) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                <form action="<?= site_url('contacts/delete/'.$value->id_contact) ?>" class="btn btn-warning btn-sm" method="post" onsubmit="return confirm('Yakin hapus data?')">
                                 <?= csrf_field(); ?>
                                 <button href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                             </form>
@@ -69,7 +76,8 @@
                             </td>
                     </tr>
                     <?php endforeach; ?>
-                </tbody>
+                    </tbody>
+
                 </table>
             </div>
         </div>
