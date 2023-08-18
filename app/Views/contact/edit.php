@@ -21,15 +21,41 @@ Tambah Data<?= $this->extend('layout/default') ?>
                 </h4>
             </div>
            <div class="card-body col-md-6">
-            <form action="<?= site_url('contacts/update/') ?>" method="post" autocomplete="off">
+            <form action="<?= site_url('contacts/'. $contact->id_contact) ?>" method="post" autocomplete="off">
             <?= csrf_field() ?>
+            <div class="form-group">
+                <label>Group *</label>
+                <select name="id_group" class="form-control" id="" required>
+                    <option value="" hidden></option>
+                    <?php foreach($groups as $key => $value) : ?>
+                        <option value="<?= $value->id_group ?>" <?= $contact->id_group == $value->id_group ? 'selected' : null ?>><?= $value->name_group ?></option>
+                        <?php endforeach; ?>
+                </select>
+            </div>
+            <input type="hidden" name="_method" value="PATCH">
                 <div class="form-group">
                     <label for="">Nama Kontak *</label>
-                    <input type="text" name="name_contact" value="" class="form-control" required >
+                    <input type="text" name="name_contact" value="<?= $contact->name_contact ?>" class="form-control" required >
                 </div>
                 <div class="form-group">
-                    <label for="">Info</label>
-                   <textarea name="info_contact" value="" id="" class="form-control" cols="30" rows="10"></textarea>
+                    <label for="">Nama Alias</label>
+                    <input type="text" name="name_alias" value="<?= $contact->name_alias ?>"class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Telepon</label>
+                    <input type="text" name="phone" value="<?= $contact->phone ?>" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" name="email" value="<?= $contact->email ?>" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Alamat</label>
+                    <input type="text" name="address" value="<?= $contact->address ?>" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Info (Kota / Instansi / dll</label>
+                   <textarea name="info_contact" value="<?= $contact->info_contact ?>" id="" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>
