@@ -21,16 +21,27 @@ Tambah Data<?= $this->extend('layout/default') ?>
                 </h4>
             </div>
            <div class="card-body col-md-6">
+           <?php $validation = \Config\Services::validation(); ?>
             <form action="<?= site_url('gawe/'.$gawe->id_gawe) ?>" method="post" autocomplete="off">
             <?= csrf_field() ?>
             <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label for="">Nama Gawe / Acara *</label>
-                    <input type="text" name="name_gawe" value="<?= $gawe->name_gawe ?>" class="form-control" required >
+                    <input type="text" name="name_gawe" value="<?= old('name_gawe', $gawe->name_gawe) ?>" class="form-control <?= $validation->hasError('name_gawe') ? 'is-invalid' : null ?>">
+                    <?php if($validation->getError('name_gawe')) {?>
+            <div class="invalid-feedback">
+              <?= $error = $validation->getError('name_gawe'); ?>
+            </div>
+        <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="">Tanggal Acara *</label>
-                    <input type="date" name="date_gawe" value="<?= $gawe->date_gawe ?>" class="form-control" required>
+                    <input type="date" name="date_gawe" value="<?= old('date_gawe',$gawe->date_gawe) ?>" class="form-control <?= $validation->hasError('date_gawe') ? 'is-invalid' : null ?>">
+                    <?php if($validation->getError('date_gawe')) {?>
+            <div class="invalid-feedback">
+              <?= $error = $validation->getError('date_gawe'); ?>
+            </div>
+        <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="">Info</label>

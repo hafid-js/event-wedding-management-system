@@ -21,15 +21,21 @@ Tambah Data<?= $this->extend('layout/default') ?>
                 </h4>
             </div>
            <div class="card-body col-md-6">
+            <?php $validation = \Config\Services::validation(); ?>
             <form action="<?= site_url('groups') ?>" method="post" autocomplete="off">
             <?= csrf_field() ?>
                 <div class="form-group">
                     <label for="">Nama Group *</label>
-                    <input type="text" name="name_group" class="form-control" required autofocus>
+                    <input type="text" name="name_group" value="<?= old("name_group") ?>" class="form-control <?= $validation->hasError('name_group') ? 'is-invalid' : null ?>" autofocus>
+                    <?php if($validation->getError('name_group')) {?>
+            <div class="invalid-feedback">
+              <?= $error = $validation->getError('name_group'); ?>
+            </div>
+        <?php }?>
                 </div>
                 <div class="form-group">
                     <label for="">Info</label>
-                   <textarea name="info_group" id="" class="form-control" cols="30" rows="10"></textarea>
+                   <textarea name="info_group" value="<?= old('info_group') ?>" id="" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>
