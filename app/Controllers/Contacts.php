@@ -20,7 +20,11 @@ class Contacts extends ResourceController
      */
     public function index()
     {
-        $data = $this->contact->getPaginated(10);
+        $keyword = $this->request->getGet('keyword');
+        $data = $this->contact->getPaginated(10, $keyword);
+
+        //untuk menampilkan kata yang dicari
+        // $data['keyword'] = $keyword;
         return view('contact/index', $data);
     }
 

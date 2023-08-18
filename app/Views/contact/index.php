@@ -40,6 +40,17 @@
                     Data Kontak Saya
                 </h4>
             </div>
+            <div class="card-header">
+                    <form action="" method="get" autocomplete="off">
+                        <div class="float-left">
+                            <?php $request = \Config\Services::request(); ?>
+                            <input type="text" name="keyword" value="<?= $request->getGet('keyword') ?>" class="form-control" style="width:155pt;" placeholder="keyword pencarian">
+                        </div>
+                        <div class="float-right ml-2">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
             <div class="card-body table-responsive">
                 <table class="card-body table table-striped table-md" id="table-1">
                     <thead>
@@ -83,7 +94,12 @@
                     </tbody>
 
                 </table>
-                <?= $pager->links('default', 'pagination') ?>
+                <div class="float-left">
+                    <i>Showing <?= 1 + (10 * ($page - 1)) ?> to <?= $no-1 ?> of <?= $pager->getTotal() ?> enteries</i>
+                </div>
+               <div class="float-right">
+               <?= $pager->links('default', 'pagination') ?>
+               </div>
             </div>
         </div>
     </div>
