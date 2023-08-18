@@ -20,7 +20,7 @@ class Contacts extends ResourceController
      */
     public function index()
     {
-        $data['contacts'] = $this->contact->getAll();
+        $data = $this->contact->getPaginated(10);
         return view('contact/index', $data);
     }
 

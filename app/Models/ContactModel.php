@@ -35,4 +35,13 @@ class ContactModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+    
+    function getPaginated($num, $keyword = null) {
+        $builder = $this->builder();
+        $builder->join('groups','groups.id_group = contacts.id_group');
+        return [
+            'contacts' => $this->paginate($num),
+            'pager' => $this->pager,
+        ];
+    }
 }

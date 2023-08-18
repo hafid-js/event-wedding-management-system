@@ -56,9 +56,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($contacts as $key => $value) : ?>
+                    <?php
+                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $no = 1 + (10 * ($page - 1));
+                    foreach($contacts as $key => $value) : ?>
                     <tr>
-                            <td><?= $key + 1 ?></td>
+                            <td><?= $no++ ?></td>
                             <td><?= $value->name_contact ?></td>
                             <td><?= $value->name_alias ?></td>
                             <td><?= $value->phone ?></td>
@@ -80,6 +83,7 @@
                     </tbody>
 
                 </table>
+                <?= $pager->links('default', 'pagination') ?>
             </div>
         </div>
     </div>
