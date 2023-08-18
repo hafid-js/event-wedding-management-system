@@ -43,8 +43,8 @@
                     <a href="<?= site_url('groups/trash') ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</a>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="card-body table table-striped table-md">
+            <div class="card-body table-responsive">
+                <table class="card-body table table-striped table-md" id="table-1">
                    <thead>
                    <tr>
                         <th>#</th>
@@ -61,9 +61,9 @@
                             <td><?= $value->info_group ?></td>
                             <td class="text-center" style="width: 15%;">
                                 <a href="<?= site_url('groups/edit/'. $value->id_group) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                <form action="<?= site_url('groups/delete/'.$value->id_group) ?>" class="btn btn-warning btn-sm" method="post" onsubmit="return confirm('Yakin hapus data?')">
+                                <form action="<?= site_url('groups/delete/'.$value->id_group) ?>" class="d-inline" method="post" id="del-<?=$value->id_group ?>">
                                 <?= csrf_field(); ?>
-                                <button href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                <button href="" class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda Yakin?" data-confirm-yes="submitDel(<?=$value->id_group?>)"><i class="fas fa-trash"></i></button>
                             </form>
                                
                             </td>

@@ -40,8 +40,8 @@
                     Data Kontak Saya
                 </h4>
             </div>
-            <div class="table-responsive">
-                <table class="card-body table table-striped table-md">
+            <div class="card-body table-responsive">
+                <table class="card-body table table-striped table-md" id="table-1">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -68,10 +68,10 @@
                             <td><?= $value->name_group ?></td>
                             <td class="text-center" style="width: 15%;">
                                 <a href="<?= site_url('contacts/'. $value->id_contact.'/edit') ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                <form action="<?= site_url('contacts/'.$value->id_contact) ?>" class="btn btn-warning btn-sm" method="post" onsubmit="return confirm('Yakin hapus data?')">
+                                <form action="<?= site_url('contacts/'.$value->id_contact) ?>" class="d-inline" method="post" id="del-<?=$value->id_contact ?>">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                <button href="" class="btn btn-danger btn-sm" data-confirm="Hapus Data?|Apakah Anda Yakin?" data-confirm-yes="submitDel(<?=$value->id_contact?>)"><i class="fas fa-trash"></i></button>
                             </form>
                                
                             </td>

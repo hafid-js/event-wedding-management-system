@@ -12,6 +12,11 @@
 
     <!-- CSS Libraries -->
 
+    <!-- datatables css -->
+    <link rel="stylesheet" href="<?php base_url() ?>/template/assets/modules/datatables/datatables.min.css">
+  <link rel="stylesheet" href="<?php base_url() ?>/template/assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?php base_url() ?>/template/assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?php base_url() ?>/template/assets/css/style.css">
     <link rel="stylesheet" href="<?php base_url() ?>/template/assets/css/components.css">
@@ -245,7 +250,7 @@
                                 <i class="fas fa-cog"></i> Settings
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="<?= site_url('auth/logout') ?>" class="dropdown-item has-icon text-danger">
+                            <a href="<?= site_url('auth/logout') ?>" class="dropdown-item has-icon text-danger" id="logout" data-confirm="Logout?|Yakin keluar aplikasi?" data-confirm-yes="returnLogout()">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
                         </div>
@@ -292,6 +297,13 @@
     <script src="<?php base_url() ?>/template/assets/js/stisla.js"></script>
 
     <!-- JS Libraies -->
+
+    <script src="<?php base_url() ?>/template/assets/modules/datatables/datatables.min.js"></script>
+  <script src="<?php base_url() ?>/template/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="<?php base_url() ?>/template/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
+  <script src="<?php base_url() ?>/template/assets/modules/jquery-ui/jquery-ui.min.js"></script>
+
+  <script src="<?php base_url() ?>/template/assets/js/page/modules-datatables.js"></script>
 
     <!-- Page Specific JS File -->
 

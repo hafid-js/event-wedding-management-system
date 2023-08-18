@@ -42,7 +42,7 @@
                 <div class="card-header-action">
                     <a href="<?= site_url('groups/restore') ?>" class="btn btn-info">Restore All</a>
                 </div>
-                <form action="<?= site_url('groups/delete2') ?>" class="d-inline" method="post" onsubmit="return confirm('Yakin hapus data?')">
+                <form action="<?= site_url('groups/delete2') ?>" class="d-inline" method="post" >
                                 <?= csrf_field(); ?>
                                 <button class="btn btn-danger btn-sm">Delete All Permanently</button>
                             </form>
@@ -62,7 +62,7 @@
                             <td><?= $value->info_group ?></td>
                             <td class="text-center" style="width: 15%;">
                                 <a href="<?= site_url('groups/restore/'. $value->id_group) ?>" class="btn btn-info btn-sm">Restore</a>
-                                <form action="<?= site_url('groups/delete2/'.$value->id_group) ?>" class="d-inline" method="post" onsubmit="return confirm('Yakin hapus data?')">
+                                <form action="<?= site_url('groups/delete2/'.$value->id_group) ?>" class="d-inline" method="post" >
                                 <?= csrf_field(); ?>
                                 <button class="btn btn-danger btn-sm">Delete Permanently</button>
                             </form>
