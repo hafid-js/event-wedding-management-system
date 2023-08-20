@@ -48,6 +48,28 @@
                         </div>
                         <div class="float-right ml-2">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            <?php
+                            $request = \Config\Services::request();
+                            $keyword = $request->getGet('keyword');
+                            if($keyword != '') {
+                                $param = "?keyword=".$keyword;
+                            } else {
+                                $param = "";
+                            }
+                            ?>
+
+                            <a href="<?= site_url('contacts/export/'.$param) ?>" class="btn btn-primary">
+                                <i class="fas fa-file-download"></i> Export Excel
+                            </a>
+                            <div class="dropdown d-inline">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-file-upload"></i> Import Excel
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="<?= base_url('contacts-example-import.xlsx') ?>"><i class="fas fa-file-excel"></i> Download Example</a>
+                        <a class="dropdown-item" href="" data-toggle="modal" data-target="#modal-import-contact"><i class="fas fa-file-import"></i> Import File</a>
+                      </div>
+                    </div>
                         </div>
                     </form>
                 </div>
@@ -104,4 +126,31 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-import-contact">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Import Contacts</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+             <form action="<?= site_url('contacts/import') ?>" method="post" enctype="multipart/form-data">
+             <?= csrf_field() ?>
+             <div class="modal-body">
+              <div class="custom-file">
+              <input type="file" name="file_excel" class="custom-file-input" id="file_excel" required>
+              <label for="file_excel" class="custom-file-label">Pilih File</label>
+              </div>
+              </div>
+              <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+             </form>
+            </div>
+          </div>
+        </div>
 <?php $this->endSection() ?>
